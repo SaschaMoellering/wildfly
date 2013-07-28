@@ -1,5 +1,5 @@
 = DESCRIPTION:
-JBOSS Wildfly 8 cookbook
+Wildfly 8 cookbook
 
 (Based on JBoss 7 Cookbook from Bryan W. Berry https://github.com/bryanwb/chef-jboss)
 
