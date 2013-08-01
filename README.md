@@ -1,4 +1,4 @@
-wildfly-cookbook
+wildfly
 ================
 
 Cookbook for Wildfly 8
