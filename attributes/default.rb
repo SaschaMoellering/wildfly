@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wildfly-cookbook
+# Cookbook Name:: wildfly
 # Attributes:: default
 # Author:: Sascha Moellering
 

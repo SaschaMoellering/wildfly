@@ -31,8 +31,7 @@ case "$1" in
     ;;
     stop)
         echo "Stopping JBoss AS 8.0.0"
-        sudo -u jboss sh ${JBOSS_HOME}/bin/jboss-admin.sh --connect 2>&1 &
-    command=:shutdown
+        sudo -u jboss sh ${JBOSS_HOME}/bin/jboss-cli.sh --connect command=:shutdown 2>&1 &
     ;;
     *)
         echo "Usage: /etc/init.d/jboss {start|stop}"

@@ -11,6 +11,11 @@ jboss_home = node['jboss']['home']
 jboss_user = node['jboss']['user']
 tarball_name = node['jboss']['tarball']
 
+# install sudo
+apt_package "sudo" do
+  action :install
+end
+
 # get files
 bash "put_files" do
   code <<-EOH
@@ -18,10 +23,10 @@ bash "put_files" do
   wget #{node['jboss']['url']}
   mkdir -p #{jboss_home}
   
-  sudo tar xvzf #{tarball_name}.tar.gz -C #{jboss_home}
-  sudo chown -R jboss:jboss #{jboss_home}
-  sudo ln -s /srv/jboss/#{tarball_name} /srv/jboss/wildfly
-  rm -f #{tarball_name}.tar.gz
+  tar xvzf #{tarball_name}.tar.gz -C #{jboss_home}
+  chown -R jboss:jboss #{jboss_home}
+  ln -s /srv/jboss/#{tarball_name} /srv/jboss/wildfly
+  #rm -f #{tarball_name}.tar.gz
   EOH
   not_if "test -d #{jboss_home}"
 end
@@ -38,6 +43,11 @@ end
 
 template "#{jboss_home}/wildfly/standalone/configuration/standalone-full-ha.xml" do
   source 'standalone-full-ha.xml.erb'
+  owner jboss_user
+end
+
+template "#{jboss_home}/wildfly/welcome-content/status.txt" do
+  source 'status.txt.erb'
   owner jboss_user
 end
 
